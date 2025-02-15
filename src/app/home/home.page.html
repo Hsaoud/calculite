@@ -1,20 +1,28 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Calculatrice</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding calculator-container">
+  <div class="display">{{ displayValue }}</div>
+  <div class="button-grid">
+    <!-- First row with special operations -->
+    <button class="special" (click)="setOperation('(')">(</button>
+    <button class="special" (click)="setOperation(')')">)</button>
+    <button class="special" (click)="setOperation('%')">%</button>
+    <button class="special clear" (click)="clear()">AC</button>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <!-- Number pad -->
+    <button *ngFor="let num of numbers" class="number" (click)="appendNumber(num)">{{ num }}</button>
+
+    <!-- Operations -->
+    <button class="operation" (click)="setOperation('/')">÷</button>
+    <button class="operation" (click)="setOperation('*')">×</button>
+    <button class="operation" (click)="setOperation('-')">−</button>
+    <button class="operation" (click)="setOperation('+')">+</button>
+
+    <!-- Equal button -->
+    <button class="equal" (click)="calculate()">=</button>
   </div>
 </ion-content>
