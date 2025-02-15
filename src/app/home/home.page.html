@@ -10,19 +10,17 @@
     <!-- First row with special operations -->
     <button class="special" (click)="setOperation('(')">(</button>
     <button class="special" (click)="setOperation(')')">)</button>
-    <button class="special" (click)="setOperation('%')">%</button>
-    <button class="special clear" (click)="clear()">AC</button>
-
-    <!-- Number pad -->
-    <button *ngFor="let num of numbers" class="number" (click)="appendNumber(num)">{{ num }}</button>
-
-    <!-- Operations -->
+    <button class="operation" (click)="clear()">AC</button>
     <button class="operation" (click)="setOperation('/')">÷</button>
-    <button class="operation" (click)="setOperation('*')">×</button>
-    <button class="operation" (click)="setOperation('-')">−</button>
-    <button class="operation" (click)="setOperation('+')">+</button>
 
-    <!-- Equal button -->
+    <!-- Number pad with operators on the right column -->
+    <button *ngFor="let num of ['7', '8', '9']" class="number" (click)="appendNumber(num)">{{ num }}</button>
+    <button class="operation" (click)="setOperation('*')">×</button>
+    <button *ngFor="let num of ['4', '5', '6']" class="number" (click)="appendNumber(num)">{{ num }}</button>
+    <button class="operation" (click)="setOperation('-')">−</button>
+    <button *ngFor="let num of ['1', '2', '3']" class="number" (click)="appendNumber(num)">{{ num }}</button>
+    <button class="operation" (click)="setOperation('+')">+</button>
+    <button *ngFor="let num of ['0', '.']" class="number" (click)="appendNumber(num)">{{ num }}</button>
     <button class="equal" (click)="calculate()">=</button>
   </div>
 </ion-content>
