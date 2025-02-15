@@ -1,0 +1,7 @@
+{
+  "name": "calcuLite",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
