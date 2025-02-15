@@ -59,7 +59,7 @@ export class HomePage {
     }
     const operationString = `${this.firstValue} ${this.operator} ${secondValue} = ${result}`;
     this.history.unshift(operationString);
-    if (this.history.length > 20) this.history.pop();
+    if (this.history.length > 200) this.history.pop();
 
     this.displayValue = result.toString();
     this.firstValue = null;
