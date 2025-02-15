@@ -1,62 +1,97 @@
-:host {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-ion-content {
-  --padding-bottom: calc(80px + env(safe-area-inset-bottom));
+.calculator-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  height: 100%;
-  background: white;
+  height: 100vh;
+  padding-bottom: calc(180px + env(safe-area-inset-bottom));
+  background: black;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
 }
 
-/* Affichage du résultat */
+ion-content {
+  --padding-bottom: calc(180px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background: black;
+  color: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  bottom: 150px;
+}
+
+.history {
+  width: 90%;
+  max-height: 35%;
+  overflow-y: auto;
+  text-align: right;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: #333;
+  color: white;
+  border-radius: 10px;
+  position: relative;
+  bottom: 220px;
+  z-index: 12;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  transition: max-height 0.3s ease-in-out;
+}
+
 .display {
   width: 90%;
   text-align: right;
-  font-size: 2em;
-  margin-bottom: 10px;
-  padding: 15px;
-  background: #f8f9fa;
+  font-size: 2.5em;
+  padding: 10px;
+  background: #222;
   border-radius: 10px;
+  position: relative;
+  bottom: 210px;
+  z-index: 11;
 }
 
-/* Grille des boutons */
 .button-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
   width: 100%;
   padding: 20px;
-  background: #f1f1f1;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  background: #111;
+  box-shadow: 0 -2px 10px rgba(255, 255, 255, 0.1);
   position: fixed;
   bottom: 0;
   left: 0;
+  z-index: 10;
 }
 
-/* Boutons */
 button {
   font-size: 1.5em;
   padding: 15px;
   border-radius: 10px;
   border: none;
+  background: #007bff;
+  color: white;
   text-align: center;
   cursor: pointer;
 }
 
-button.number {
-  background: #007bff;
-  color: white;
-}
-
 button.operation {
   background: #fd7e14;
-  color: white;
 }
 
 button.equal {
@@ -66,7 +101,6 @@ button.equal {
 
 button.clear {
   background: #dc3545;
-  color: white;
 }
 
 button:active {

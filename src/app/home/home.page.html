@@ -4,22 +4,34 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="calculator-container">
-  <div class="display">{{ displayValue }}</div>
+<ion-content class="ion-content calculator-container">
+  <div class="container">
+    <!-- Historique des calculs -->
+    <div class="history">
+      <div *ngFor="let entry of history" class="history-entry">{{ entry }}</div>
+    </div>
+
+    <!-- Affichage du résultat -->
+    <div class="display">{{ displayValue }}</div>
+  </div>
+
   <div class="button-grid">
-    <!-- First row with special operations -->
+    <!-- Ligne spéciale avec AC et () -->
     <button class="special" (click)="setOperation('(')">(</button>
     <button class="special" (click)="setOperation(')')">)</button>
-    <button class="operation" (click)="clear()">AC</button>
+    <button class="clear" (click)="clear()">AC</button>
     <button class="operation" (click)="setOperation('/')">÷</button>
 
-    <!-- Number pad with operators on the right column -->
+    <!-- Chiffres et opérateurs -->
     <button *ngFor="let num of ['7', '8', '9']" class="number" (click)="appendNumber(num)">{{ num }}</button>
     <button class="operation" (click)="setOperation('*')">×</button>
+
     <button *ngFor="let num of ['4', '5', '6']" class="number" (click)="appendNumber(num)">{{ num }}</button>
     <button class="operation" (click)="setOperation('-')">−</button>
+
     <button *ngFor="let num of ['1', '2', '3']" class="number" (click)="appendNumber(num)">{{ num }}</button>
     <button class="operation" (click)="setOperation('+')">+</button>
+
     <button *ngFor="let num of ['0', '.']" class="number" (click)="appendNumber(num)">{{ num }}</button>
     <button class="equal" (click)="calculate()">=</button>
   </div>

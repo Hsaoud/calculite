@@ -13,6 +13,8 @@ export class HomePage {
   firstValue: number | null = null;
   operator: string | null = null;
   waitingForSecondValue = false;
+  history: string[] = [];
+
 
   numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'];
   operations = ['+', '-', '*', '/', '%', '(', ')'];
@@ -40,13 +42,25 @@ export class HomePage {
     const secondValue = parseFloat(this.displayValue);
     let result: number;
     switch (this.operator) {
-      case '+': result = this.firstValue + secondValue; break;
-      case '-': result = this.firstValue - secondValue; break;
-      case '*': result = this.firstValue * secondValue; break;
-      case '/': result = secondValue !== 0 ? this.firstValue / secondValue : NaN; break;
-      case '%': result = this.firstValue % secondValue; break;
-      default: return;
+      case '+':
+        result = this.firstValue + secondValue;
+        break;
+      case '-':
+        result = this.firstValue - secondValue;
+        break;
+      case '*':
+        result = this.firstValue * secondValue;
+        break;
+      case '/':
+        result = secondValue !== 0 ? this.firstValue / secondValue : NaN;
+        break;
+      default:
+        return;
     }
+    const operationString = `${this.firstValue} ${this.operator} ${secondValue} = ${result}`;
+    this.history.unshift(operationString);
+    if (this.history.length > 20) this.history.pop();
+
     this.displayValue = result.toString();
     this.firstValue = null;
     this.operator = null;
@@ -58,5 +72,6 @@ export class HomePage {
     this.firstValue = null;
     this.operator = null;
     this.waitingForSecondValue = false;
+    this.history = [];
   }
 }
