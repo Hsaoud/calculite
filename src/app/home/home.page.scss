@@ -39,14 +39,14 @@ ion-content {
   min-height: 50px;
   overflow-y: auto;
   text-align: right;
-  font-size: 3.2em;
+  font-size: 1.2em;
   margin-bottom: 10px;
   padding: 10px;
   background: #333;
   color: white;
   border-radius: 10px;
   position: relative;
-  bottom: 580px;
+  bottom: 200px;
   z-index: 12;
   display: flex;
   flex-direction: column-reverse;
@@ -72,16 +72,14 @@ ion-content {
 
 .display {
   width: 90%;
-  height: 1.5em;
   text-align: right;
-  font-size: 5.5em;
-  margin-bottom: 10px;
+  font-size: 3.5em;
   padding: 10px;
   background: #222;
   color: white;
   border-radius: 10px;
   position: relative;
-  bottom: 560px;
+  bottom: 180px;
   z-index: 11;
 }
 
@@ -101,7 +99,7 @@ ion-content {
 
 button {
   font-size: 1.5em;
-  padding: 50px;
+  padding: 10px;
   border-radius: 10px;
   border: none;
   background: #007bff;

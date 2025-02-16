@@ -65,7 +65,7 @@ export class HomePage {
     if (this.history.length > 200) this.history.pop();
 
     this.displayValue = result.toString();
-    this.currentCalculation = '';
+    this.currentCalculation = result.toString();
     this.firstValue = null;
     this.operator = null;
     this.waitingForSecondValue = false;
