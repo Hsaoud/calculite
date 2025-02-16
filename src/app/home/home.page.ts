@@ -14,6 +14,7 @@ export class HomePage {
   operator: string | null = null;
   waitingForSecondValue = false;
   history: string[] = [];
+  currentCalculation: string = '';
 
 
   numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'];
@@ -26,6 +27,7 @@ export class HomePage {
     } else {
       this.displayValue = this.displayValue === '0' ? num : this.displayValue + num;
     }
+    this.currentCalculation += num;
   }
 
   setOperation(op: string) {
@@ -35,6 +37,7 @@ export class HomePage {
     this.firstValue = parseFloat(this.displayValue);
     this.operator = op;
     this.waitingForSecondValue = true;
+    this.currentCalculation += ' ' + op + ' ';
   }
 
   calculate() {
@@ -62,6 +65,7 @@ export class HomePage {
     if (this.history.length > 200) this.history.pop();
 
     this.displayValue = result.toString();
+    this.currentCalculation = '';
     this.firstValue = null;
     this.operator = null;
     this.waitingForSecondValue = false;
@@ -73,5 +77,6 @@ export class HomePage {
     this.operator = null;
     this.waitingForSecondValue = false;
     this.history = [];
+    this.currentCalculation = '';
   }
 }
