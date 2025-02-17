@@ -22,6 +22,13 @@ export class HomePage {
   numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'];
   operations = ['+', '-', '*', '/', '%', '(', ')'];
 
+  constructor() {
+    this.requestPermissions();
+  }
+  async requestPermissions() {
+    const permissionStatus = await SpeechRecognition.requestPermissions();
+    console.log('Statut de la permission:', permissionStatus);
+  }
   appendNumber(num: string) {
     if (this.waitingForSecondValue) {
       this.displayValue = num;
