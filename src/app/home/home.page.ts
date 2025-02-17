@@ -1,12 +1,13 @@
 import {Component} from '@angular/core';
-import {IonHeader, IonToolbar, IonTitle, IonContent} from '@ionic/angular/standalone';
+import {IonHeader, IonToolbar, IonTitle, IonContent, IonButton} from '@ionic/angular/standalone';
 import {NgForOf} from "@angular/common";
+import {SpeechRecognition} from "@capacitor-community/speech-recognition";
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, NgForOf],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, NgForOf, IonButton],
 })
 export class HomePage {
   displayValue = '0';
@@ -15,6 +16,7 @@ export class HomePage {
   waitingForSecondValue = false;
   history: string[] = [];
   currentCalculation: string = '';
+  isListening: boolean = false;
 
 
   numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'];
@@ -29,7 +31,52 @@ export class HomePage {
     }
     this.currentCalculation += num;
   }
+  async startListening() {
+    this.isListening = true;
 
+    // Lancement de la reconnaissance vocale
+    const available = await SpeechRecognition.available();
+    if (!available) {
+      alert("La reconnaissance vocale n'est pas disponible sur cet appareil.");
+      return;
+    }
+
+    SpeechRecognition.start({
+      language: 'fr-FR',
+      maxResults: 1,
+      prompt: 'Parlez pour calculer...',
+      partialResults: true,
+    }).then(result => {
+      if (result.matches && result.matches.length > 0) {
+        this.processVoiceCommand(result.matches[0]);
+      }
+    }).catch(error => {
+      console.error('Erreur de reconnaissance vocale', error);
+    });
+
+    this.isListening = false;
+  }
+  processVoiceCommand(command: string) {
+    console.log('Commande détectée:', command);
+    const text = command.toLowerCase();
+
+    // Convertir les mots en opérateurs
+    let expression = text
+      .replace(/plus/g, '+')
+      .replace(/moins/g, '-')
+      .replace(/multiplié par/g, '*')
+      .replace(/divisé par/g, '/');
+
+    // Mettre à jour l'affichage et calculer
+    this.currentCalculation = expression;
+    try {
+      const result = eval(expression); // ⚠️ Vérifie bien l'entrée pour éviter des erreurs de sécurité
+      this.displayValue = result.toString();
+      this.history.unshift(`${expression} = ${result}`);
+    } catch (error) {
+      this.displayValue = "Erreur";
+    }
+  }
   setOperation(op: string) {
     if (this.operator !== null && !this.waitingForSecondValue) {
       this.calculate();

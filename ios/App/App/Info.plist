@@ -47,5 +47,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>NSSpeechRecognitionUsageDescription</key>
+  <string>Cette application utilise la reconnaissance vocale pour exécuter des calculs.</string>
+  <key>NSMicrophoneUsageDescription</key>
+  <string>Cette application a besoin d'accéder au micro pour la reconnaissance vocale.</string>
 </dict>
 </plist>

@@ -80,7 +80,6 @@ ion-content {
   border-radius: 10px;
   position: relative;
   bottom: 180px;
-  z-index: 11;
 }
 
 .button-grid {
@@ -94,7 +93,6 @@ ion-content {
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 10;
 }
 
 button {
@@ -123,4 +121,34 @@ button.clear {
 
 button:active {
   opacity: 0.7;
+}
+
+.speech-button {
+  /* 🔥 Supprimer le carré bleu */
+  outline: none;
+  border: none;
+  background-image: none;
+  box-shadow: none;
+
+
+  position: absolute;
+  top: -600px;
+  right: 16px;
+  background: #28a745;
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: background 0.3s;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.speech-button:hover {
+  background: #218838;
 }
